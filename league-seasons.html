@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League Seasons — Squad Value Tracker</title>
+<meta name="description" content="Every league-season by combined squad value — each division's total value season by season, sortable and filterable, with a flag when clubs are missing from the source.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="league-seasons">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>League Seasons</h1>
+    <div class="tagline">Every division by combined squad value, season by season — the league-level view of Team Seasons</div>
+    <div class="view-toggle"><a href="seasons.html">← Team Seasons</a><span class="active">League Seasons</span></div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="lsSearch">Search league</label>
+        <input id="lsSearch" list="lsList" placeholder="Type a league…" autocomplete="off">
+        <datalist id="lsList"></datalist>
+      </div>
+      <div class="picker-field">
+        <label for="lsCountry">Country</label>
+        <select id="lsCountry"><option value="">All countries</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="lsTier">Level</label>
+        <select id="lsTier"><option value="">All levels</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="lsYear">Season</label>
+        <select id="lsYear"><option value="">All seasons</option></select>
+      </div>
+      <div class="picker-field">
+        <label>&nbsp;</label>
+        <button type="button" id="lsReset" class="btn-secondary">Reset</button>
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.78rem;margin:8px 0 0;">
+      "Squad value" is the combined value of every club in that division that season; "Later Peak" sums each
+      club's future-peak value. A ⚠ marks a league-season where the source is missing one or more clubs, so its
+      total is understated — see the <a href="data.html">data dictionary</a>. Click a row for that season's table.
+    </p>
+  </section>
+
+  <section class="panel">
+    <div id="lsSummary" class="muted results-summary"></div>
+    <div class="table-scroll bref-table-wrap">
+      <table class="bref-table" id="lsTable">
+        <thead>
+          <tr>
+            <th data-key="name" data-type="text">League</th>
+            <th data-key="country" data-type="text">Country</th>
+            <th data-key="tier" data-type="num" class="num">Lvl</th>
+            <th data-key="season" data-type="num" class="num">Season</th>
+            <th data-key="clubs" data-type="num" class="num">Clubs</th>
+            <th data-key="squad_value" data-type="num" class="num">Squad Value</th>
+            <th data-key="later_peak" data-type="num" class="num">Later Peak</th>
+          </tr>
+        </thead>
+        <tbody id="lsTbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="league-seasons.js?v=32"></script>
+</body>
+</html>

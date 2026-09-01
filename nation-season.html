@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nation Season — Squad Value Tracker</title>
+<meta name="description" content="One nation's squad for a single season — the 26 most valuable (or highest-potential) citizens in a real formation shape, with values, caps and goals.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="nation-season">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Nation Season</h1>
+    <div class="tagline">One country's national-team squad for a single season — who was picked and what they were worth</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="nationSearch">Search nation</label>
+        <input id="nationSearch" list="nationSearchList" placeholder="Type a nation…" autocomplete="off">
+        <datalist id="nationSearchList"></datalist>
+      </div>
+      <div class="picker-field">
+        <label for="nationSelect">Nation</label>
+        <select id="nationSelect"><option value="">Choose a nation…</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="nationYearSelect">Season</label>
+        <select id="nationYearSelect" disabled><option value="">Choose a season…</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="nationModeSelect">Squad</label>
+        <select id="nationModeSelect">
+          <option value="top26_value">Top 26 by value</option>
+          <option value="top26_future">Top 26 by future value</option>
+          <option value="all">Whole citizen pool</option>
+        </select>
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.78rem;margin:8px 0 0;">
+      A "nation" is everyone whose citizenship is that country (dual nationals count for both; not an
+      official call-up list). See the whole history on the
+      <a id="franchiseLink" href="nations.html">nation's full page</a>, or browse
+      <a href="nation-seasons.html">every nation-season</a>.
+    </p>
+  </section>
+
+  <div id="nationDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="nation-season.js?v=32"></script>
+</body>
+</html>

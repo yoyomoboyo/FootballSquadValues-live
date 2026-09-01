@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All-Star Squads — Squad Value Tracker</title>
+<meta name="description" content="Browse every All-Star squad — the best-by-value XI or 26 for every team, league, and nation — sortable by combined value, top player, and average age.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="allstars">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>All-Star Squads</h1>
+    <div class="tagline">Every team, league and nation's best-by-value squad in one sortable table — click any row to open it</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="allstar-toolbar" style="align-items:flex-end">
+      <div>
+        <div class="muted" style="font-size:0.72rem;margin-bottom:4px">Scope</div>
+        <div class="seg-toggle" id="dirScope">
+          <button type="button" class="on" data-s="team">Teams</button>
+          <button type="button" data-s="league">Leagues</button>
+          <button type="button" data-s="nation">Nations</button>
+        </div>
+      </div>
+      <div>
+        <div class="muted" style="font-size:0.72rem;margin-bottom:4px">Roster</div>
+        <div class="seg-toggle" id="dirFmt">
+          <button type="button" class="on" data-f="26">26-man</button>
+          <button type="button" data-f="xi">Starting XI</button>
+        </div>
+      </div>
+      <div class="picker-field picker-search">
+        <label for="dirSearch">Search</label>
+        <input id="dirSearch" placeholder="Filter by name…" autocomplete="off">
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.76rem;margin:8px 0 0;">
+      "Combined value" is the selected squad's total at each player's peak. Click a row for the full
+      squad on the <a href="allstar.html">All-Star page</a>.
+    </p>
+  </section>
+
+  <section class="panel">
+    <div id="dirSummary" class="muted results-summary"></div>
+    <div class="table-scroll bref-table-wrap">
+      <table class="bref-table" id="dirTable">
+        <thead>
+          <tr>
+            <th data-key="name" data-type="text" id="dirNameHead">Team</th>
+            <th data-key="extra" data-type="text" id="dirExtraHead">League</th>
+            <th data-key="combined" data-type="num" class="num">Combined value</th>
+            <th data-key="top_value" data-type="num" class="num">Top player</th>
+            <th data-key="avg_age" data-type="num" class="num">Avg age</th>
+          </tr>
+        </thead>
+        <tbody id="dirTbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="allstars.js?v=32"></script>
+</body>
+</html>

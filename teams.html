@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teams — Squad Value Tracker</title>
+<meta name="description" content="Browse any club by nation, league, or direct search -- roster, league performance, and notable transfer moves by season.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="teams">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Teams</h1>
+    <div class="tagline">Pick a nation, league, and team -- or just search for one directly</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="nationSelect">Nation</label>
+        <select id="nationSelect"><option value="">Any nation</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leagueSelect">League</label>
+        <select id="leagueSelect"><option value="">Any league</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="teamSelect">Team</label>
+        <select id="teamSelect"><option value="">Choose a team…</option></select>
+      </div>
+      <div class="picker-field picker-search">
+        <label for="teamSearchInput">Or search any team</label>
+        <input type="text" id="teamSearchInput" placeholder="e.g. Fulham, Boca Juniors…" autocomplete="off">
+        <ul id="teamSearchResults" class="search-results" hidden></ul>
+      </div>
+      <div class="picker-field">
+        <label for="yearSelect">Year</label>
+        <select id="yearSelect" disabled><option value="">Latest</option></select>
+      </div>
+      <div class="picker-field">
+        <label class="toggle-label" for="top5Toggle">
+          <input type="checkbox" id="top5Toggle"> Top 5 European leagues only
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <div id="teamDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="charts.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="moves.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="team-picker.js?v=32"></script>
+<script src="teams.js?v=32"></script>
+</body>
+</html>

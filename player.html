@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player — Squad Value Tracker</title>
+<meta name="description" content="A player's career -- value over time, every club they played for, their transfers, and season-by-season stats.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="player">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Player</h1>
+    <div class="tagline">Search a player to see their value over time, clubs, transfers, and stats</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field picker-search" style="flex:1 1 320px;">
+        <label for="playerSearchInput">Search player</label>
+        <input type="text" id="playerSearchInput" placeholder="e.g. Kevin De Bruyne, Erling Haaland…" autocomplete="off">
+        <ul id="playerSearchResults" class="search-results" hidden></ul>
+      </div>
+    </div>
+  </section>
+
+  <div id="playerDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="charts.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="moves.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="player.js?v=32"></script>
+</body>
+</html>

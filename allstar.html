@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All-Star Squad — Squad Value Tracker</title>
+<meta name="description" content="Build an All-Star squad — best 26 or a Starting XI by transfer value, split by position — for any team, league, league-season, or nation.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="allstar">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>All-Star Squad</h1>
+    <div class="tagline">Best 26 — or a Starting XI — by transfer value, split by position, for any team, league, league-season, or nation</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="allstar-toolbar" style="align-items:flex-end">
+      <div>
+        <div class="muted" style="font-size:0.72rem;margin-bottom:4px">Scope</div>
+        <div class="seg-toggle" id="scopeSeg"></div>
+      </div>
+      <div class="picker-row" id="targetControls" style="margin:0"></div>
+    </div>
+    <p class="muted" style="font-size:0.76rem;margin:8px 0 0;">
+      Or <a href="allstars.html">browse every All-Star squad</a> in one sortable table. For
+      <strong>Nation-Season</strong> squads (one country in one year), use the
+      <a href="nation-season.html">Nation Season page</a> — that squad already serves as the nation's
+      all-star for that year.
+    </p>
+  </section>
+
+  <div id="allstarDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="allstar.js?v=32"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squad Value Tracker — football squad values over time</title>
+<meta name="description" content="What every club, league and national-team pool in football has been worth, season by season — and what each squad went on to become.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="home">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Squad Value Tracker</h1>
+    <div class="tagline">What every club, league and nation has been worth — season by season</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <p class="home-intro">
+      <strong>Squad Value Tracker</strong> follows the market value of clubs, leagues and
+      national-team pools across football, back to 2012 — what a squad was worth at the time, and
+      what it went on to become. A place to start:
+    </p>
+    <h2 style="margin-top:18px">Season spotlight — biggest value risers</h2>
+    <p class="muted" style="font-size:0.8rem;margin:-4px 0 14px">
+      Top-five-league squads whose value grew the most into their eventual peak — the sides that were
+      most undervalued at the time. Click one to open that squad.
+    </p>
+    <div class="table-scroll">
+      <table id="spotlightTable">
+        <thead><tr>
+          <th>Club</th><th>League</th><th class="num">Season</th>
+          <th class="num">Value then</th><th class="num">Peaked at</th><th class="num">Rise</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px"><a href="seasons.html">See the full Seasons table →</a></p>
+  </section>
+
+  <section class="panel">
+    <h2>Explore</h2>
+    <div class="home-menu">
+      <a class="home-card" href="seasons.html">
+        <span class="hc-title">Club Soccer</span>
+        <span class="hc-sub">Clubs, leagues &amp; seasons — who was worth what, and when</span>
+      </a>
+      <a class="home-card" href="nations.html">
+        <span class="hc-title">National Teams</span>
+        <span class="hc-sub">Every nation's player pool, FIFA rank &amp; goals over time</span>
+      </a>
+      <a class="home-card" href="globe.html">
+        <span class="hc-title">Globe</span>
+        <span class="hc-sub">Every tracked club on a spinnable world map</span>
+      </a>
+      <a class="home-card" href="compare.html">
+        <span class="hc-title">Compare</span>
+        <span class="hc-sub">Put any clubs, players &amp; nations on one chart</span>
+      </a>
+      <a class="home-card" href="player.html">
+        <span class="hc-title">Player</span>
+        <span class="hc-sub">Any player's value over time, clubs &amp; transfers</span>
+      </a>
+      <a class="home-card" href="leagues.html">
+        <span class="hc-title">Leagues</span>
+        <span class="hc-sub">A league's aggregate value and every club in it</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Every nation's most valuable player</h2>
+    <p class="muted" style="font-size:0.8rem;margin:-4px 0 12px">
+      One dot per national team, placed on its home country and coloured by confederation. Each marks
+      that nation's single most valuable player ever recorded. Drag to spin, scroll to zoom, and click a
+      dot for the player — their peak value and the clubs they were at then and now.
+    </p>
+    <div class="natglobe-controls">
+      <div class="picker-field">
+        <label for="natGlobeConf">Confederation</label>
+        <select id="natGlobeConf"><option value="">All confederations</option></select>
+      </div>
+      <label class="toggle-label" for="natGlobeSpin" style="align-self:flex-end;padding-bottom:8px;">
+        <input type="checkbox" id="natGlobeSpin" checked> Auto-spin
+      </label>
+    </div>
+    <div class="natglobe-layout">
+      <div class="globe-wrap">
+        <canvas id="natGlobeCanvas" width="560" height="560"></canvas>
+        <div class="globe-tooltip" id="natGlobeTooltip"></div>
+      </div>
+      <div id="natGlobeCard" class="natglobe-card">
+        <p class="muted" style="margin:0">Click any dot to see that nation's most valuable player.</p>
+      </div>
+    </div>
+    <div class="globe-legend" id="natGlobeLegend"></div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="app.js?v=32"></script>
+<script src="nation-globe.js?v=32"></script>
+</body>
+</html>

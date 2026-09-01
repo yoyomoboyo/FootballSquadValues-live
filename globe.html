@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globe — Squad Value Tracker</title>
+<meta name="description" content="Every tracked club on a spinnable world globe — coloured by confederation, sized by division. Click a club to open its page.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+<style>
+  .globe-wrap { position: relative; width: 100%; display: flex; justify-content: center; }
+  #globeCanvas { touch-action: none; cursor: grab; max-width: 100%; border-radius: 12px; }
+  #globeCanvas.dragging { cursor: grabbing; }
+  .globe-tooltip {
+    position: fixed; pointer-events: none; z-index: 50; opacity: 0;
+    background: var(--panel); color: var(--text); border: 1px solid rgba(148,163,184,.35);
+    border-radius: 8px; padding: 6px 10px; font-size: .8rem; line-height: 1.3;
+    box-shadow: 0 6px 20px rgba(0,0,0,.4); transform: translate(-50%, calc(-100% - 12px));
+    transition: opacity .08s; white-space: nowrap; max-width: 240px;
+  }
+  .globe-tooltip .gt-name { font-weight: 600; }
+  .globe-tooltip .gt-sub { color: var(--muted); font-size: .72rem; }
+  .globe-controls { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; margin-top: 12px; }
+  .globe-controls .picker-field { min-width: 150px; }
+  .globe-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+  .globe-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; color: var(--muted); }
+  .globe-legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .globe-hint { font-size: .74rem; color: var(--muted); margin-top: 8px; }
+  .globe-stat { font-size: .74rem; color: var(--muted); }
+  @media (max-width: 560px) { .globe-controls .picker-field { min-width: 120px; flex: 1; } }
+</style>
+</head>
+<body data-page="globe">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Globe</h1>
+    <div class="tagline">Every tracked club on the world — drag to spin, scroll to zoom, click a club to open it</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="globe-controls">
+      <div class="picker-field">
+        <label for="globeConf">Confederation</label>
+        <select id="globeConf"><option value="">All confederations</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="globeTier">Division level</label>
+        <select id="globeTier">
+          <option value="">All levels</option>
+          <option value="1">Top flight only</option>
+          <option value="2">2nd tier and up</option>
+        </select>
+      </div>
+      <label class="toggle-label" for="globeActive" style="align-self:flex-end;padding-bottom:8px;">
+        <input type="checkbox" id="globeActive"> Active clubs only (2020+)
+      </label>
+      <label class="toggle-label" for="globeSpin" style="align-self:flex-end;padding-bottom:8px;">
+        <input type="checkbox" id="globeSpin" checked> Auto-spin
+      </label>
+      <span class="globe-stat" id="globeStat" style="align-self:flex-end;padding-bottom:9px;"></span>
+    </div>
+    <div class="globe-legend" id="globeLegend"></div>
+
+    <div class="globe-wrap">
+      <canvas id="globeCanvas" width="720" height="720"></canvas>
+      <div class="globe-tooltip" id="globeTooltip"></div>
+    </div>
+
+    <p class="globe-hint">
+      Marker size reflects division level (top-flight clubs largest). Faded markers are clubs we don't yet have full
+      page data for. Positions are stadium/home-city coordinates from Wikidata; about a third of lower-tier and defunct
+      clubs have no coordinate yet and aren't shown.
+    </p>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+  Coordinates via <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="globe.js?v=32"></script>
+</body>
+</html>
