@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nation Seasons — Squad Value Tracker</title>
+<meta name="description" content="Every national-team pool by season — the value of each country's players, their FIFA ranking and squad depth, sortable and filterable.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="nation-seasons">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Nation Seasons</h1>
+    <div class="tagline">Every national-team pool by season — value, FIFA rank and squad depth. Sort any column.</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="nsSearch">Search nation</label>
+        <input id="nsSearch" list="nsList" placeholder="Type a nation…" autocomplete="off">
+        <datalist id="nsList"></datalist>
+      </div>
+      <div class="picker-field">
+        <label for="nsConf">Confederation</label>
+        <select id="nsConf"><option value="">All confederations</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="nsYear">Season</label>
+        <select id="nsYear"><option value="">All seasons</option></select>
+      </div>
+      <div class="picker-field">
+        <label>&nbsp;</label>
+        <button type="button" id="nsReset" class="btn-secondary">Reset</button>
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.78rem;margin:8px 0 0;">
+      "NT Value" is the 26 most valuable eligible players (a national-team-sized squad); "Whole Pool" is
+      every player with that citizenship. Values are market values — see the <a href="data.html">data dictionary</a>.
+    </p>
+  </section>
+
+  <section class="panel">
+    <div id="nsSummary" class="muted results-summary"></div>
+    <div class="table-scroll bref-table-wrap">
+      <table class="bref-table" id="nsTable">
+        <thead>
+          <tr>
+            <th data-key="name" data-type="text">Nation</th>
+            <th data-key="season" data-type="num">Season</th>
+            <th data-key="confederation" data-type="text">Conf</th>
+            <th data-key="pool_value" data-type="num" class="num">NT Value</th>
+            <th data-key="pool_future" data-type="num" class="num">Future</th>
+            <th data-key="all_value" data-type="num" class="num">Whole Pool</th>
+            <th data-key="fifa_rank" data-type="num" class="num">FIFA</th>
+            <th data-key="pool_count" data-type="num" class="num">Players</th>
+          </tr>
+        </thead>
+        <tbody id="nsTbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="nation-seasons.js?v=32"></script>
+</body>
+</html>

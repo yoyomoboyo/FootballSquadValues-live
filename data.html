@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Dictionary — Squad Value Tracker</title>
+<meta name="description" content="What every column and value on Squad Value Tracker means, how it's derived, and worked examples — squad values, the peaks, ages, results, and the data-freshness caveats.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="data">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Data Dictionary</h1>
+    <div class="tagline">What every number on the site means, how it's built, and an example</div>
+  </div>
+</div>
+
+<main class="single-column">
+  <section class="panel">
+    <p class="home-intro">
+      Every value here comes from public football data (see the footer). The money figures are
+      Transfermarkt <strong>market values</strong> — transfer-market prices shaped by age, contract and
+      demand, <strong>not</strong> a ranking of how good a player is (a legend can be worth far less
+      than a rising prospect). And nothing on the site is a projection or model: the "peak" figures are
+      built entirely from values that <strong>already happened</strong>. This page explains each column
+      — hover any stat around the site for the short version, and click through to here for the full
+      definition.
+    </p>
+    <nav class="dict-index" id="dictIndex" aria-label="Jump to a term"></nav>
+  </section>
+
+  <div id="dictBody"></div>
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="nav.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="data.js?v=32"></script>
+</body>
+</html>

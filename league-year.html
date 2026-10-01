@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League Season — Squad Value Tracker</title>
+<meta name="description" content="One league season in full: standings, records, squad values, and that window's biggest transfers by value and by what the players became.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="leagues">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>League Season</h1>
+    <div class="tagline">One league, one season — standings, records, values, and the window's biggest moves</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="leagueCountrySelect">Country</label>
+        <select id="leagueCountrySelect"><option value="">Any country</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leagueLevelSelect">Level</label>
+        <select id="leagueLevelSelect"><option value="">Any level</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leaguePickSelect">League</label>
+        <select id="leaguePickSelect"><option value="">Choose a league…</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="yearPickSelect">Season</label>
+        <select id="yearPickSelect" disabled><option value="">Choose a season…</option></select>
+      </div>
+    </div>
+  </section>
+
+  <div id="leagueYearDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="moves.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="league-year.js?v=32"></script>
+</body>
+</html>

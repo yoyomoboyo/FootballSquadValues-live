@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare — Squad Value Tracker</title>
+<meta name="description" content="Overlay several teams, leagues, and players' value trends on one chart.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="compare">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Compare</h1>
+    <div class="tagline">Add any mix of teams, leagues, and players to see their value trends on one chart</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field picker-search" style="flex:1 1 320px;">
+        <label for="compareSearchInput">Add a team, league, or player</label>
+        <input type="text" id="compareSearchInput" placeholder="Search by name…" autocomplete="off">
+        <ul id="compareSearchResults" class="search-results" hidden></ul>
+      </div>
+      <div class="picker-field">
+        <label class="toggle-label" for="normalizeAgeToggle" title="Plots each player's value against their own age instead of the calendar year, so you can compare e.g. two players' value at age 21 regardless of when they were actually 21. Players only -- teams/leagues have no age, so they're hidden from the chart while this is on.">
+          <input type="checkbox" id="normalizeAgeToggle"> Normalize by age (players only)
+        </label>
+      </div>
+      <div class="picker-field">
+        <label class="toggle-label" for="excludeIncompleteToggle" title="A league's line is the sum of its top-flight clubs that season. When the source is missing one or more clubs for a league-season, that total is understated. Turn this on to drop those understated seasons from league lines rather than showing an artificial dip.">
+          <input type="checkbox" id="excludeIncompleteToggle"> Drop understated league-seasons
+        </label>
+      </div>
+    </div>
+    <div id="compareList" style="margin-top:14px;"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Value over time</h2>
+    <canvas id="compareChart" height="110"></canvas>
+    <p id="compareChartNote" class="muted" style="font-size:0.8rem;margin-top:6px;">
+      Each line is that entity's actual/current value (not "potential") -- teams and leagues in squad
+      value, players in market value -- so lines stay comparable across a mixed set.
+    </p>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="compare.js?v=32"></script>
+</body>
+</html>

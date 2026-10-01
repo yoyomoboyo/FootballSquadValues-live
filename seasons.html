@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Seasons — Squad Value Tracker</title>
+<meta name="description" content="Every club-season in the dataset, sortable and filterable by team, country, league, year, and value range.">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="seasons">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Team Seasons</h1>
+    <div class="tagline">Every club-season in the dataset — sort any column, filter by team, country, league, year, or value</div>
+    <div class="view-toggle"><span class="active">Team Seasons</span><a href="league-seasons.html">League Seasons →</a></div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="teamFilterInput">Team</label>
+        <input type="text" id="teamFilterInput" placeholder="Search team name…" autocomplete="off">
+      </div>
+      <div class="picker-field">
+        <label for="countryFilterSelect">Country</label>
+        <select id="countryFilterSelect"><option value="">Any country</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leagueFilterSelect">League</label>
+        <select id="leagueFilterSelect"><option value="">Any league</option></select>
+      </div>
+      <div class="picker-field">
+        <label class="toggle-label" for="top5Toggle">
+          <input type="checkbox" id="top5Toggle"> Top 5 European leagues only
+        </label>
+      </div>
+      <div class="picker-field">
+        <label class="toggle-label" for="hideSparseToggle" title="Hides club-seasons whose roster is too thin to trust -- a fully-covered senior squad in this data runs ~20-27 players with a recorded value, so seasons well below that are missing real squad members rather than genuinely tiny. The source's roster coverage is sparse for many clubs/seasons (especially pre-2012 and outside the top leagues), and a thin roster understates that season's true squad value. On by default; the setting is shared across the whole site.">
+          <input type="checkbox" id="hideSparseToggle"> Hide incomplete squads
+        </label>
+      </div>
+      <div class="picker-field">
+        <label>&nbsp;</label>
+        <button type="button" id="resetFiltersBtn" class="btn-secondary">Reset filters</button>
+      </div>
+    </div>
+
+    <div class="picker-row range-row">
+      <div class="picker-field range-field">
+        <label>Year: <span id="yearRangeLabel"></span></label>
+        <div class="range-slider" id="yearRangeSlider">
+          <div class="range-slider-track"></div>
+          <div class="range-slider-fill" id="yearRangeFill"></div>
+          <input type="range" id="yearRangeMin" aria-label="Earliest season">
+          <input type="range" id="yearRangeMax" aria-label="Latest season">
+        </div>
+        <div class="range-ticks" id="yearRangeTicks" aria-hidden="true"></div>
+        <div class="year-input-pair">
+          <label for="yearFromInput">From</label>
+          <input type="number" id="yearFromInput" step="1" inputmode="numeric">
+          <label for="yearToInput">to</label>
+          <input type="number" id="yearToInput" step="1" inputmode="numeric">
+        </div>
+      </div>
+      <div class="picker-field">
+        <label for="minActualInput">Min squad value <span class="value-unit">(€M)</span></label>
+        <input type="number" id="minActualInput" placeholder="0" min="0" step="1">
+      </div>
+      <div class="picker-field">
+        <label for="maxActualInput">Max squad value <span class="value-unit">(€M)</span></label>
+        <input type="number" id="maxActualInput" placeholder="Any" min="0" step="1">
+      </div>
+      <div class="picker-field">
+        <label for="minFutureInput">Min future value <span class="value-unit">(€M)</span></label>
+        <input type="number" id="minFutureInput" placeholder="0" min="0" step="1">
+      </div>
+      <div class="picker-field">
+        <label for="maxFutureInput">Max future value <span class="value-unit">(€M)</span></label>
+        <input type="number" id="maxFutureInput" placeholder="Any" min="0" step="1">
+      </div>
+    </div>
+    <p class="muted range-note">
+      Value filters are in millions of whichever currency is selected above (and reflect the "today's money"
+      toggle too) -- switching currency reinterprets typed numbers in the new currency rather than converting them.
+    </p>
+  </section>
+
+  <section class="panel">
+    <div id="resultsSummary" class="muted results-summary"></div>
+    <div class="table-scroll bref-table-wrap">
+      <table class="bref-table" id="seasonsTable">
+        <thead>
+          <tr>
+            <th data-key="team" data-type="text">Team</th>
+            <th data-key="season" data-type="num">Year</th>
+            <th data-key="league_label" data-type="text">League</th>
+            <th data-key="final_position" data-type="text" title="League finish, plus any cup finals won that season">Result</th>
+            <th data-key="wins" data-type="num" class="num" title="League record: wins-draws-losses">Record</th>
+            <th data-key="actual_value" data-type="num" class="num">Squad Value</th>
+            <th data-key="potential_value" data-type="num" class="num">Later Peak</th>
+            <th data-key="potential_value_alltime" data-type="num" class="num">All-Time Peak</th>
+            <th data-key="cohort_peak_value" data-type="num" class="num" title="Single-Year Peak: the highest combined value this season's players reached in one single later year — valued together in the same year (even after some moved clubs), unlike Later/All-Time Peak which sum each player's own best year separately — all built from real recorded values, never a projection">Single-Year Peak</th>
+            <th data-key="cohort_peak_year" data-type="num" class="num" title="The single later year in which this season's players were collectively worth the most">Peak Year</th>
+            <th data-key="future_diff_pct" data-type="num" class="num">Later %</th>
+            <th data-key="alltime_diff_pct" data-type="num" class="num">All-Time %</th>
+            <th data-key="cohort_diff_pct" data-type="num" class="num" title="% growth from the squad's value that season to its Single-Year Peak">Peak %</th>
+            <th data-key="average_age" data-type="num" class="num">Avg Age</th>
+            <th data-key="squad_size" data-type="num" class="num">Squad</th>
+          </tr>
+        </thead>
+        <tbody id="seasonsTbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="seasons.js?v=32"></script>
+</body>
+</html>

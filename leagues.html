@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leagues — Squad Value Tracker</title>
+<meta name="description" content="A league's aggregate squad value over time, and every club in it across the years.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body data-page="leagues">
+
+<div id="site-header"></div>
+
+<div class="page-title">
+  <div>
+    <h1>Leagues</h1>
+    <div class="tagline">Pick a country and league to see its aggregate squad value over time and every club in it</div>
+  </div>
+</div>
+
+<main class="single-column">
+
+  <section class="panel">
+    <div class="picker-row">
+      <div class="picker-field">
+        <label for="leagueCountrySelect">Country</label>
+        <select id="leagueCountrySelect"><option value="">Any country</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leagueLevelSelect">Level</label>
+        <select id="leagueLevelSelect"><option value="">Any level</option></select>
+      </div>
+      <div class="picker-field">
+        <label for="leaguePickSelect">League</label>
+        <select id="leaguePickSelect"><option value="">Choose a league…</option></select>
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.75rem;margin:8px 0 0;">
+      Second and third tiers (Championship, Serie B, Segunda, Ligue 2, 2.&nbsp;Bundesliga, League One, …) come with
+      <strong>real standings</strong> — full rank and W-D-L. Market-value coverage is thinner below the top flights, so some
+      squad values are incomplete (⚠-flagged) and the current season is still filling in.
+    </p>
+  </section>
+
+  <div id="leagueDetail"></div>
+
+</main>
+
+<footer id="footer">
+  Data via <a href="https://github.com/dcaribou/transfermarkt-datasets" target="_blank" rel="noopener">transfermarkt-datasets</a>.
+</footer>
+
+<script src="money.js?v=32"></script>
+<script src="logos.js?v=32"></script>
+<script src="nav.js?v=32"></script>
+<script src="charts.js?v=32"></script>
+<script src="format.js?v=32"></script>
+<script src="moves.js?v=32"></script>
+<script src="stat-docs.js?v=32"></script>
+<script src="season-table.js?v=32"></script>
+<script src="leagues.js?v=32"></script>
+</body>
+</html>
